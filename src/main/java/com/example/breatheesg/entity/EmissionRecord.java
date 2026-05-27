@@ -123,4 +123,5 @@ public class EmissionRecord {
     public void setRawData(String rawData) {
         this.rawData = rawData;
     }
+
 }

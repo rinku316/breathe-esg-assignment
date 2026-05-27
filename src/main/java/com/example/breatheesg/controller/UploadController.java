@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/upload")
-@CrossOrigin("*")
+@CrossOrigin("http://localhost:5173")
 public class UploadController {
 
     @Autowired
@@ -22,6 +22,8 @@ public class UploadController {
     @Autowired
     private EmissionRecordRepository repository;
 
+    
+    
     @PostMapping("/sap")
     public String uploadSAP(
             @RequestParam("file") MultipartFile file) {
@@ -31,9 +33,28 @@ public class UploadController {
         return "File Uploaded Successfully";
     }
 
+    
+    
     @GetMapping("/records")
     public List<EmissionRecord> getAllRecords() {
 
         return repository.findAll();
+    }
+    
+    
+    
+    @PutMapping("/approve/{id}")
+    public String approveRecord(@PathVariable Long id) {
+    	uploadService.approveRecord(id);
+    
+    	return "Record Approve";
+    }
+    
+    
+    
+    @PutMapping("/reject/{id}")
+    public String rejectRecord(@PathVariable Long id) {
+    	uploadService.rejectrecord(id);
+    	return "Record Rejceted";
     }
 }

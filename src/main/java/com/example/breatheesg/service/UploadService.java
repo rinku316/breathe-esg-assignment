@@ -22,9 +22,7 @@ public class UploadService {
 
         try {
 
-            CSVReader reader =
-                    new CSVReader(
-                            new InputStreamReader(file.getInputStream()));
+            CSVReader reader = new CSVReader(new InputStreamReader(file.getInputStream()));
 
             List<String[]> rows = reader.readAll();
 
@@ -66,4 +64,26 @@ public class UploadService {
             e.printStackTrace();
         }
     }
+
+	public void approveRecord(Long id) {
+		// TODO Auto-generated method stub
+		EmissionRecord record = repository.findById(id).orElse(null);
+		
+		if (record != null) {
+			record.setStatus("APPROVED");
+			repository.save(record);
+		}
+		
+	}
+
+	public void rejectrecord(Long id) {
+		// TODO Auto-generated method stub
+		EmissionRecord record = repository.findById(id).orElse(null);
+		
+		if (record != null) {
+			record.setStatus("REJECTED");
+			repository.save(record);
+		}
+		
+	}
 }
