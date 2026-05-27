@@ -6,6 +6,6 @@ COPY . .
 
 RUN mvn clean package -DskipTests
 
-EXPOSE 8080
+EXPOSE 9090
 
 CMD ["sh", "-c", "java -jar $(find target -name '*.jar')"]
