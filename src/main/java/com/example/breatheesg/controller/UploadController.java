@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/upload")
-@CrossOrigin("http://localhost:5173")
+@CrossOrigin("*")
 public class UploadController {
 
     @Autowired
